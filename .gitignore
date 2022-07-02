@@ -1,0 +1,25 @@
+# CLion and PyCharm create
+.idea/
+
+# Eclipse creates
+.cproject
+.project
+.settings/
+
+# Microsoft Visual Code creates
+.vscode/
+
+# Xcode files by convention are in folder
+xcode-build/
+
+# build files by convention are in folders
+cmake-build*/
+cmake-build-debug*/
+cmake-build-release*/
+
+# module files by convention are in folders
+modules/
+
+# data processing by convention occurs in directory (may be a symbolic link)
+processing/
+/processing
