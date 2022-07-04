@@ -1,7 +1,7 @@
 !> @author Ralf Quast
 !> @date 2022
 !> @copyright MIT License
-!> @brief Evaluate the cost function c = 1/2 b^T d, where A(x) d = b and A(x) d is a function
+!> @brief Evaluate the cost function c = 1/2 b^T d, where A(x) d = b and A(x) is a function
 
 module cost_matrix_free_mod
   use base_mod, only: wp
