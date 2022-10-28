@@ -1,7 +1,7 @@
 This code is a collection of matrix derivative tests for forward and reverse mode
 algorithmic differentiation.
         
-# Getting started [![CMake](https://github.com/octoflar/madrigal/actions/workflows/cmake.yml/badge.svg)](https://github.com/octoflar/madrigal/actions/workflows/cmake.yml)
+# Getting started [![CMake](https://github.com/octoflar/mad/actions/workflows/cmake.yml/badge.svg)](https://github.com/octoflar/mad/actions/workflows/cmake.yml)
  
 Building this software requires [CMake](https://cmake.org) and a compiler that implements
 the Fortran 2008 standard.
