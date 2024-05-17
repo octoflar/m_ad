@@ -1,9 +1,11 @@
-![Graphical abstract](assets/img/cgb.png "Adjoint conjugate gradient code")
+![Graphical abstract](assets/img/cgw.png "Adjoint conjugate gradient code")
 
 This code is a collection of matrix derivative tests for forward and reverse mode
 algorithmic differentiation.
-        
-# Getting started [![CMake](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml/badge.svg)](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml)
+
+[![CMake](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml/badge.svg)](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml)
+
+# Getting started
  
 Building this software requires [CMake](https://cmake.org) and a compiler that implements
 the Fortran 2008 standard.
