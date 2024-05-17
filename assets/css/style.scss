@@ -3,6 +3,12 @@
 
 @import "{{ site.theme }}";
 
+#main_content_wrap {
+  background: #ffffff;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
 body {
   // add custom styles here, e.g,
   // background-color: #cdcdcd;
