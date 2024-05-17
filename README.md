@@ -1,4 +1,4 @@
-![Graphical abstract](assets/img/cgb.png "Adjoint conjugate gradient code")
+![Graphical abstract](assets/img/cgw.png "Adjoint conjugate gradient code")
 
 This code is a collection of matrix derivative tests for forward and reverse mode
 algorithmic differentiation.
