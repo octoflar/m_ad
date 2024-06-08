@@ -4,6 +4,7 @@ This code is a collection of matrix derivative tests for forward and reverse mod
 algorithmic differentiation.
 
 [![CMake](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml/badge.svg)](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml)
+[![codecov](https://codecov.io/gh/octoflar/m_ad/graph/badge.svg?token=ESRBJSJ9HJ)](https://codecov.io/gh/octoflar/m_ad)
 
 # Getting started
  
