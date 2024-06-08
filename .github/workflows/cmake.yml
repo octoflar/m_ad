@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
-
 jobs:
   build-macos:
     # The CMake configure and build commands are platform agnostic and should work equally
@@ -17,6 +13,14 @@ jobs:
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: macos-latest
+
+    strategy:
+      matrix:
+        # Customize the CMake build types here (Release, Debug, RelWithDebInfo, etc.)
+        kind: [Debug, Release]
+
+    env:
+      BUILD_TYPE: ${{ matrix.kind }}
 
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +50,14 @@ jobs:
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Customize the CMake build types here (Release, Debug, RelWithDebInfo, etc.)
+        kind: [Release]
+
+    env:
+      BUILD_TYPE: ${{ matrix.kind }}
 
     steps:
       - uses: actions/checkout@v4
