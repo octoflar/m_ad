@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         # Customize the CMake build types here (Release, Debug, RelWithDebInfo, etc.)
-        kind: [Debug, Release]
+        kind: [Release]
 
     env:
       BUILD_TYPE: ${{ matrix.kind }}
@@ -43,11 +43,6 @@ jobs:
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C ${{env.BUILD_TYPE}}
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
     
   build-linux:
     # The CMake configure and build commands are platform agnostic and should work equally
@@ -59,7 +54,7 @@ jobs:
     strategy:
       matrix:
         # Customize the CMake build types here (Release, Debug, RelWithDebInfo, etc.)
-        kind: [Release]
+        kind: [Debug, Release]
 
     env:
       BUILD_TYPE: ${{ matrix.kind }}
@@ -81,3 +76,8 @@ jobs:
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C ${{env.BUILD_TYPE}}
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
