@@ -10,7 +10,7 @@ include(src/main/cmake/veclib.cmake)
 ##
 # Project
 #
-project(m_ad VERSION 2022.1 LANGUAGES Fortran)
+project(m_ad VERSION 2024.1 LANGUAGES Fortran)
 
 veclib_required()
 
