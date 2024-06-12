@@ -6,5 +6,5 @@ authors:
     orcid: "https://orcid.org/0000-0002-6857-6503"
 title: M_ad - Matrix derivative tests for forward and reverse mode AD
 repository-code: "https://github.com/octoflar/m_ad"
-url: https://octoflar.github.io/m_ad/
+url: "https://octoflar.github.io/m_ad"
 license: MIT
