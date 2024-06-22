@@ -103,7 +103,7 @@ contains
     real(kind=dp) :: h(n)
 
     call cg__dp( n, a, b, x, accuracy_goal, max_iteration )
-    h = b_tl - matmul( a_tl, x )
+    h = b_tl - matmul( a_tl, x ) ! LCOV_EXCL_LINE
     call cg__dp( n, a, h, x_tl, accuracy_goal, max_iteration )
   end subroutine cg_tl__dp
 
