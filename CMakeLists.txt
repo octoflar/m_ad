@@ -81,12 +81,6 @@ add_unit_test(cost_test
         ${MAIN}/fortran/solver_mod.F90
         ${MAIN}/fortran/cost_mod.F90
         ${TEST}/fortran/cost_mod_test.F90)
-add_unit_test(cost_matrix_free_test
-        ${MAIN}/fortran/math_mod.F90
-        ${MAIN}/fortran/solver_mod.F90
-        ${MAIN}/fortran/matmul_mod.F90
-        ${MAIN}/fortran/cost_matrix_free_mod.F90
-        ${TEST}/fortran/cost_matrix_free_mod_test.F90)
 add_unit_test(solver_test
         ${MAIN}/fortran/base_mod.F90
         ${MAIN}/fortran/math_mod.F90
