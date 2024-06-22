@@ -100,8 +100,11 @@ contains
     real(kind=dp), intent(in) :: accuracy_goal
     integer, intent(in) :: max_iteration
 
+    real(kind=dp) :: h(n)
+
     call cg__dp( n, a, b, x, accuracy_goal, max_iteration )
-    call cg__dp( n, a, b_tl - matmul( a_tl, x ), x_tl, accuracy_goal, max_iteration )
+    h = b_tl - matmul( a_tl, x )
+    call cg__dp( n, a, h, x_tl, accuracy_goal, max_iteration )
   end subroutine cg_tl__dp
 
   !> @brief The preconditioned Conjugate Gradient iteration (Barret et al. 1994, Fig. 2.5)
