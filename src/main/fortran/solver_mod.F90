@@ -80,8 +80,8 @@ contains
     real(kind=dp) :: h(n)
     integer :: j
 
-    call cg( n, a, b, x, accuracy_goal, max_iteration )
-    call cg( n, a, x_ad, h, accuracy_goal, max_iteration )
+    call cg__dp( n, a, b, x, accuracy_goal, max_iteration )
+    call cg__dp( n, a, x_ad, h, accuracy_goal, max_iteration )
     b_ad = b_ad + h
     do j = 1, n
       a_ad(:,j) = a_ad(:,j) - h(:) * x(j)
@@ -100,8 +100,8 @@ contains
     real(kind=dp), intent(in) :: accuracy_goal
     integer, intent(in) :: max_iteration
 
-    call cg( n, a, b, x, accuracy_goal, max_iteration )
-    call cg( n, a, b_tl - matmul( a_tl, x ), x_tl, accuracy_goal, max_iteration )
+    call cg__dp( n, a, b, x, accuracy_goal, max_iteration )
+    call cg__dp( n, a, b_tl - matmul( a_tl, x ), x_tl, accuracy_goal, max_iteration )
   end subroutine cg_tl__dp
 
   !> @brief The preconditioned Conjugate Gradient iteration (Barret et al. 1994, Fig. 2.5)
@@ -176,7 +176,7 @@ contains
       i = i + 1
     end do
     if (i > max_iteration) then
-      error stop "linear_systems_mod::cg(): The maximum number of iterations is exceeded."
+      error stop "linear_systems_mod::cg(): The maximum number of iterations is exceeded." ! LCOV_EXCL_LINE
     end if
   end subroutine cg_no_matrix__dp
 
