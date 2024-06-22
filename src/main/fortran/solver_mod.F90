@@ -17,20 +17,19 @@ module solver_mod
     
   interface cg
     module procedure cg__dp
-    module procedure cg_symmetric_matrix__dp
   end interface
 
   interface cg_ad
-    module procedure cg_symmetric_matrix_ad__dp
+    module procedure cg_ad__dp
   end interface
 
   interface cg_tl
-    module procedure cg_symmetric_matrix_tl__dp
+    module procedure cg_tl__dp
   end interface
 
 contains
       
-  subroutine cg_symmetric_matrix__dp( n, a, b, x, accuracy_goal, max_iteration )
+  subroutine cg__dp( n, a, b, x, accuracy_goal, max_iteration )
     integer, intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
     real(kind=dp), intent(in) :: b(n)
@@ -38,7 +37,7 @@ contains
     real(kind=dp), intent(in) :: accuracy_goal
     integer, intent(in) :: max_iteration
     
-    call cg__dp( n, a_matmul, b, x, m_inv_matmul, accuracy_goal, max_iteration )
+    call cg_no_matrix__dp( n, a_matmul, b, x, m_inv_matmul, accuracy_goal, max_iteration )
     
   contains
     
@@ -65,9 +64,9 @@ contains
         y(i) = x(i) / a(i,i)
       end do
     end function m_inv_matmul
-  end subroutine cg_symmetric_matrix__dp
+  end subroutine cg__dp
 
-  subroutine cg_symmetric_matrix_ad__dp( n, a, a_ad, b, b_ad, x, x_ad, accuracy_goal, max_iteration )
+  subroutine cg_ad__dp( n, a, a_ad, b, b_ad, x, x_ad, accuracy_goal, max_iteration )
     integer, intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
     real(kind=dp), intent(inout) :: a_ad(n,n)
@@ -88,9 +87,9 @@ contains
       a_ad(:,j) = a_ad(:,j) - h(:) * x(j)
     end do
     ! intentionally omitted x_ad = 0.0_dp
-  end subroutine cg_symmetric_matrix_ad__dp
+  end subroutine cg_ad__dp
 
-  subroutine cg_symmetric_matrix_tl__dp( n, a, a_tl, b, b_tl, x, x_tl, accuracy_goal, max_iteration )
+  subroutine cg_tl__dp( n, a, a_tl, b, b_tl, x, x_tl, accuracy_goal, max_iteration )
     integer, intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
     real(kind=dp), intent(in) :: a_tl(n,n)
@@ -103,7 +102,7 @@ contains
 
     call cg( n, a, b, x, accuracy_goal, max_iteration )
     call cg( n, a, b_tl - matmul( a_tl, x ), x_tl, accuracy_goal, max_iteration )
-  end subroutine cg_symmetric_matrix_tl__dp
+  end subroutine cg_tl__dp
 
   !> @brief The preconditioned Conjugate Gradient iteration (Barret et al. 1994, Fig. 2.5)
   !! to solve the linear problem A x = b.
@@ -114,7 +113,7 @@ contains
   !> @param[in] m_inv_matmul The inverse of a (symmetric) preconditioning matrix M.
   !> @param[in] accuracy_goal The accuracy goal.
   !> @param[in] max_iteration The maximum number of iterations.
-  subroutine cg__dp( n, a_matmul, b, x, m_inv_matmul, accuracy_goal, max_iteration )
+  subroutine cg_no_matrix__dp( n, a_matmul, b, x, m_inv_matmul, accuracy_goal, max_iteration )
     interface
       !> @brief The product of a square matrix with a vector.
       !> @param[in] n The dimension of the square matrix.
@@ -179,7 +178,7 @@ contains
     if (i > max_iteration) then
       error stop "linear_systems_mod::cg(): The maximum number of iterations is exceeded."
     end if
-  end subroutine cg__dp
+  end subroutine cg_no_matrix__dp
 
   pure function inner_product__dp( n, x, y ) result (z)
     integer, intent(in) :: n
