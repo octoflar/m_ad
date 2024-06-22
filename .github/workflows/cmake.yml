@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         # Customize the CMake build types here (Release, Debug, RelWithDebInfo, etc.)
-        kind: [Release]
+        kind: [Debug, Release]
 
     env:
       BUILD_TYPE: ${{ matrix.kind }}
