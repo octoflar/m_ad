@@ -142,7 +142,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix) ! LCOV
     real(kind=dp)             :: matrix(n,n)
 
     call get_random_matrix_normal__dp( n, d, matrix )
-    matrix = 0.5_dp * (matrix + transpose( matrix ))
+    matrix = 0.5_dp * (matrix + transpose( matrix )) ! LCOV_EXCL_LINE
   end function new_symmetric_matrix_from_random_numbers_normal__dp
 
   function new_random_number_normal__dp( d ) result (number) ! LCOV_EXCL_LINE
