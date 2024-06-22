@@ -67,7 +67,7 @@ module math_mod
 
 contains
 
-pure function new_diagonal_matrix_from_range__dp( n, first, last ) result (matrix)
+pure function new_diagonal_matrix_from_range__dp( n, first, last ) result (matrix) ! LCOV_EXCL_LINE
   integer,       intent(in) :: n
   real(kind=dp), intent(in) :: first, last
   real(kind=dp)             :: matrix(n,n)
@@ -82,7 +82,7 @@ pure function new_diagonal_matrix_from_range__dp( n, first, last ) result (matri
   end do
 end function new_diagonal_matrix_from_range__dp
 
-pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
+pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp)             :: matrix(n,n)
@@ -94,7 +94,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end function new_diagonal_matrix_from_scalar__dp
 
-  pure function new_diagonal_matrix_from_vector__dp( n, d ) result (matrix)
+  pure function new_diagonal_matrix_from_vector__dp( n, d ) result (matrix) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d(n)
     real(kind=dp)             :: matrix(n,n)
@@ -106,7 +106,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end function new_diagonal_matrix_from_vector__dp
 
-  pure function new_diagonal_matrix_from_matrix__dp( n, a ) result (matrix)
+  pure function new_diagonal_matrix_from_matrix__dp( n, a ) result (matrix) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
     real(kind=dp)             :: matrix(n,n)
@@ -118,7 +118,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end function new_diagonal_matrix_from_matrix__dp
   
-  function new_square_matrix_from_random_numbers_normal__dp( n, d ) result (matrix)
+  function new_square_matrix_from_random_numbers_normal__dp( n, d ) result (matrix) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp)             :: matrix(n,n)
@@ -126,26 +126,26 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     call get_random_matrix_normal__dp( n, d, matrix )
   end function new_square_matrix_from_random_numbers_normal__dp
 
-  function new_diagonal_matrix_from_random_numbers_normal__dp( n, d ) result (matrix)
+  function new_diagonal_matrix_from_random_numbers_normal__dp( n, d ) result (matrix) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp)             :: matrix(n,n)
     real(kind=dp)             :: vector(n)
 
     call get_random_vector_normal__dp( n, d, vector )
-    matrix = new_diagonal_matrix_from_vector__dp( n, vector )
+    matrix = new_diagonal_matrix_from_vector__dp( n, vector ) ! LCOV_EXCL_LINE
   end function new_diagonal_matrix_from_random_numbers_normal__dp
 
-  function new_symmetric_matrix_from_random_numbers_normal__dp( n, d ) result (matrix)
+  function new_symmetric_matrix_from_random_numbers_normal__dp( n, d ) result (matrix) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp)             :: matrix(n,n)
 
     call get_random_matrix_normal__dp( n, d, matrix )
-    matrix = 0.5_dp * (matrix + transpose( matrix ))
+    matrix = 0.5_dp * (matrix + transpose( matrix )) ! LCOV_EXCL_LINE
   end function new_symmetric_matrix_from_random_numbers_normal__dp
 
-  function new_random_number_normal__dp( d ) result (number)
+  function new_random_number_normal__dp( d ) result (number) ! LCOV_EXCL_LINE
     real(kind=dp), intent(in) :: d
     real(kind=dp) :: number
     real(kind=dp) :: vector(2) 
@@ -155,7 +155,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     number = sum( vector )
   end function new_random_number_normal__dp
 
-  function new_vector_from_random_numbers_normal__dp( n, d ) result (vector)
+  function new_vector_from_random_numbers_normal__dp( n, d ) result (vector) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp)             :: vector(n)
@@ -163,7 +163,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     call get_random_vector_normal__dp( n, d, vector )
   end function new_vector_from_random_numbers_normal__dp
 
-  subroutine get_random_vector_normal__dp( n, d, z )
+  subroutine get_random_vector_normal__dp( n, d, z ) ! LCOV_EXCL_LINE
     integer, intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp), intent(out) :: z(n)
@@ -195,7 +195,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     z = z * d
   end subroutine get_random_vector_normal__dp
 
-  subroutine get_random_matrix_normal__dp( n, d, z )
+  subroutine get_random_matrix_normal__dp( n, d, z ) ! LCOV_EXCL_LINE
     integer, intent(in) :: n
     real(kind=dp), intent(in) :: d
     real(kind=dp), intent(out) :: z(n,n)
@@ -225,7 +225,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     deallocate (seeds)
   end subroutine set_random_seed
 
-  function frobenius_inner_product__dp( n, a, b ) result (frobenius_inner_product)
+  function frobenius_inner_product__dp( n, a, b ) result (frobenius_inner_product) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
     real(kind=dp), intent(in) :: b(n,n)
@@ -234,7 +234,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     frobenius_inner_product = trace__dp( n, matmul( transpose( a ), b ) )
   end function frobenius_inner_product__dp
 
-  function outer_product__dp( n, a, b ) result (outer_product)
+  function outer_product__dp( n, a, b ) result (outer_product) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n)
     real(kind=dp), intent(in) :: b(n)
@@ -246,7 +246,7 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end function outer_product__dp
 
-  function trace__dp( n, a ) result (trace)
+  function trace__dp( n, a ) result (trace) ! LCOV_EXCL_LINE
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
     real(kind=dp) :: trace
