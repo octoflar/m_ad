@@ -206,18 +206,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end subroutine get_random_matrix_normal__dp
 
-  subroutine get_random_vector_uniform__dp( n, d, z )
-    integer, intent(in) :: n
-    real(kind=dp), intent(in) :: d(n)
-    real(kind=dp), intent(out) :: z(n)
-    integer :: i
-
-    do i = 1, n
-      call random_number( z(i) )
-    end do
-    z = z * d
-  end subroutine get_random_vector_uniform__dp
-
   !> @brief Initializes the intrinsic random number generator.
   !> @param[in] seed The seed.
   subroutine set_random_seed( seed )
