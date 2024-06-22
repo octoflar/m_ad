@@ -24,9 +24,9 @@ module math_mod
 
   interface diag
     module procedure new_diagonal_matrix_from_range__dp
-    module procedure new_diagonal_matrix_from_scalar__dp
-    module procedure new_diagonal_matrix_from_vector__dp
-    module procedure new_diagonal_matrix_from_matrix__dp
+    !module procedure new_diagonal_matrix_from_scalar__dp
+    !module procedure new_diagonal_matrix_from_vector__dp
+    !module procedure new_diagonal_matrix_from_matrix__dp
   end interface
 
   interface fp
