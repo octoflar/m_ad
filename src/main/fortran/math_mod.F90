@@ -3,7 +3,7 @@
 !> @copyright MIT License
 !> @brief Mathematical operations similar to Matlab functions.
 module math_mod
-  use base_mod, only: dp, sp
+  use base_mod, only: dp
 
   implicit none
 
@@ -23,42 +23,42 @@ module math_mod
   public :: seed
 
   interface diag
-    module procedure new_diagonal_matrix_from_range__dp, new_diagonal_matrix_from_range__sp
-    module procedure new_diagonal_matrix_from_scalar__dp, new_diagonal_matrix_from_scalar__sp
-    module procedure new_diagonal_matrix_from_vector__dp, new_diagonal_matrix_from_vector__sp
-    module procedure new_diagonal_matrix_from_matrix__dp, new_diagonal_matrix_from_matrix__sp
+    module procedure new_diagonal_matrix_from_range__dp
+    module procedure new_diagonal_matrix_from_scalar__dp
+    module procedure new_diagonal_matrix_from_vector__dp
+    module procedure new_diagonal_matrix_from_matrix__dp
   end interface
 
   interface fp
-    module procedure frobenius_inner_product__dp, frobenius_inner_product__sp
+    module procedure frobenius_inner_product__dp
   end interface
 
   interface outer_product
-    module procedure outer_product__dp, outer_product__sp
+    module procedure outer_product__dp
   end interface
 
   interface tr
-    module procedure trace__dp, trace__sp
+    module procedure trace__dp
   end interface
 
   interface drandn
-    module procedure new_diagonal_matrix_from_random_numbers_normal__dp, new_diagonal_matrix_from_random_numbers_normal__sp
+    module procedure new_diagonal_matrix_from_random_numbers_normal__dp
   end interface
 
   interface mrandn
-    module procedure new_square_matrix_from_random_numbers_normal__dp, new_square_matrix_from_random_numbers_normal__sp
+    module procedure new_square_matrix_from_random_numbers_normal__dp
   end interface
 
   interface srandn
-    module procedure new_symmetric_matrix_from_random_numbers_normal__dp, new_symmetric_matrix_from_random_numbers_normal__sp
+    module procedure new_symmetric_matrix_from_random_numbers_normal__dp
   end interface
 
   interface vrandn
-    module procedure new_vector_from_random_numbers_normal__dp, new_vector_from_random_numbers_normal__sp
+    module procedure new_vector_from_random_numbers_normal__dp
   end interface
 
   interface randn
-    module procedure new_random_number_normal__dp, new_random_number_normal__sp
+    module procedure new_random_number_normal__dp
   end interface
 
   interface seed
@@ -82,21 +82,6 @@ pure function new_diagonal_matrix_from_range__dp( n, first, last ) result (matri
   end do
 end function new_diagonal_matrix_from_range__dp
 
-pure function new_diagonal_matrix_from_range__sp( n, first, last ) result (matrix)
-  integer,       intent(in) :: n
-  real(kind=sp), intent(in) :: first, last
-  real(kind=sp)             :: matrix(n,n)
-  integer                   :: i
-  real(kind=sp)             :: incr
-
-  incr = (last - first) / (n - 1)
-
-  matrix = 0.0_sp
-  do concurrent (i = 1:n)
-    matrix(i,i) = first + (i - 1) * incr
-  end do
-end function new_diagonal_matrix_from_range__sp
-
 pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
@@ -108,18 +93,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
       matrix(i,i) = d
     end do
   end function new_diagonal_matrix_from_scalar__dp
-
-  pure function new_diagonal_matrix_from_scalar__sp( n, d ) result (matrix)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp)             :: matrix(n,n)
-    integer                   :: i
-
-    matrix = 0.0_sp
-    do concurrent (i = 1:n)
-      matrix(i,i) = d
-    end do
-  end function new_diagonal_matrix_from_scalar__sp
 
   pure function new_diagonal_matrix_from_vector__dp( n, d ) result (matrix)
     integer,       intent(in) :: n
@@ -133,18 +106,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end function new_diagonal_matrix_from_vector__dp
 
-  pure function new_diagonal_matrix_from_vector__sp( n, d ) result (matrix)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: d(n)
-    real(kind=sp)             :: matrix(n,n)
-    integer                   :: i
-
-    matrix = 0.0_sp
-    do concurrent (i = 1:n)
-      matrix(i,i) = d(i)
-    end do
-  end function new_diagonal_matrix_from_vector__sp
-
   pure function new_diagonal_matrix_from_matrix__dp( n, a ) result (matrix)
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
@@ -156,18 +117,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
       matrix(i,i) = a(i,i)
     end do
   end function new_diagonal_matrix_from_matrix__dp
-
-  pure function new_diagonal_matrix_from_matrix__sp( n, a ) result (matrix)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: a(n,n)
-    real(kind=sp)             :: matrix(n,n)
-    integer                   :: i
-
-    matrix = 0.0_dp
-    do concurrent (i = 1:n)
-      matrix(i,i) = a(i,i)
-    end do
-  end function new_diagonal_matrix_from_matrix__sp
   
   function new_square_matrix_from_random_numbers_normal__dp( n, d ) result (matrix)
     integer,       intent(in) :: n
@@ -176,14 +125,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
 
     call get_random_matrix_normal__dp( n, d, matrix )
   end function new_square_matrix_from_random_numbers_normal__dp
-
-  function new_square_matrix_from_random_numbers_normal__sp( n, d ) result (matrix)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp)             :: matrix(n,n)
-
-    call get_random_matrix_normal__sp( n, d, matrix )
-  end function new_square_matrix_from_random_numbers_normal__sp
 
   function new_diagonal_matrix_from_random_numbers_normal__dp( n, d ) result (matrix)
     integer,       intent(in) :: n
@@ -195,16 +136,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     matrix = new_diagonal_matrix_from_vector__dp( n, vector )
   end function new_diagonal_matrix_from_random_numbers_normal__dp
 
-  function new_diagonal_matrix_from_random_numbers_normal__sp( n, d ) result (matrix)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp)             :: matrix(n,n)
-    real(kind=sp)             :: vector(n)
-
-    call get_random_vector_normal__sp( n, d, vector )
-    matrix = new_diagonal_matrix_from_vector__sp( n, vector )
-  end function new_diagonal_matrix_from_random_numbers_normal__sp
-
   function new_symmetric_matrix_from_random_numbers_normal__dp( n, d ) result (matrix)
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
@@ -213,15 +144,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     call get_random_matrix_normal__dp( n, d, matrix )
     matrix = 0.5_dp * (matrix + transpose( matrix ))
   end function new_symmetric_matrix_from_random_numbers_normal__dp
-
-  function new_symmetric_matrix_from_random_numbers_normal__sp( n, d ) result (matrix)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp)             :: matrix(n,n)
-
-    call get_random_matrix_normal__sp( n, d, matrix )
-    matrix = 0.5_sp * (matrix + transpose( matrix ))
-  end function new_symmetric_matrix_from_random_numbers_normal__sp
 
   function new_random_number_normal__dp( d ) result (number)
     real(kind=dp), intent(in) :: d
@@ -233,16 +155,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     number = sum( vector )
   end function new_random_number_normal__dp
 
-  function new_random_number_normal__sp( d ) result (number)
-    real(kind=sp), intent(in) :: d
-    real(kind=sp) :: number
-    real(kind=sp) :: vector(2) 
-    real(kind=sp), parameter :: square_root_of_two = sqrt( 2.0_sp )
-
-    call get_random_vector_normal__sp( 2, square_root_of_two * d, vector )
-    number = sum( vector )
-  end function new_random_number_normal__sp
-
   function new_vector_from_random_numbers_normal__dp( n, d ) result (vector)
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: d
@@ -250,14 +162,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
 
     call get_random_vector_normal__dp( n, d, vector )
   end function new_vector_from_random_numbers_normal__dp
-
-  function new_vector_from_random_numbers_normal__sp( n, d ) result (vector)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp)             :: vector(n)
-
-    call get_random_vector_normal__sp( n, d, vector )
-  end function new_vector_from_random_numbers_normal__sp
 
   subroutine get_random_vector_normal__dp( n, d, z )
     integer, intent(in) :: n
@@ -291,38 +195,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     z = z * d
   end subroutine get_random_vector_normal__dp
 
-  subroutine get_random_vector_normal__sp( n, d, z )
-    integer, intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp), intent(out) :: z(n)
-    real(kind=sp) :: t, x, y
-    integer :: i
-
-    do i = 1, n, 2
-      do
-        call random_number( x )
-        call random_number( y )
-        x = 2.0_sp * x - 1.0_sp
-        y = 2.0_sp * y - 1.0_sp
-        t = x**2 + y**2
-        if (t > 0.0_sp .and. t < 1.0_sp) then
-          exit
-        end if
-      end do
-
-      t = sqrt( -2.0_sp * (log( t ) / t) )
-      x = x * t
-      y = y * t
-
-      ! both x and y are normal deviates
-      z(i) = x
-      if (i < n) then
-        z(i + 1) = y
-      end if
-    end do
-    z = z * d
-  end subroutine get_random_vector_normal__sp
-
   subroutine get_random_matrix_normal__dp( n, d, z )
     integer, intent(in) :: n
     real(kind=dp), intent(in) :: d
@@ -333,17 +205,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
       call get_random_vector_normal__dp( n, d, z(:,j) )
     end do
   end subroutine get_random_matrix_normal__dp
-
-  subroutine get_random_matrix_normal__sp( n, d, z )
-    integer, intent(in) :: n
-    real(kind=sp), intent(in) :: d
-    real(kind=sp), intent(out) :: z(n,n)
-    integer :: j
-
-    do j = 1, n
-      call get_random_vector_normal__sp( n, d, z(:,j) )
-    end do
-  end subroutine get_random_matrix_normal__sp
 
   subroutine get_random_vector_uniform__dp( n, d, z )
     integer, intent(in) :: n
@@ -356,18 +217,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
     z = z * d
   end subroutine get_random_vector_uniform__dp
-
-  subroutine get_random_vector_uniform__sp( n, d, z )
-    integer, intent(in) :: n
-    real(kind=sp), intent(in) :: d(n)
-    real(kind=sp), intent(out) :: z(n)
-    integer :: i
-
-    do i = 1, n
-      call random_number( z(i) )
-    end do
-    z = z * d
-  end subroutine get_random_vector_uniform__sp
 
   !> @brief Initializes the intrinsic random number generator.
   !> @param[in] seed The seed.
@@ -397,15 +246,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     frobenius_inner_product = trace__dp( n, matmul( transpose( a ), b ) )
   end function frobenius_inner_product__dp
 
-  function frobenius_inner_product__sp( n, a, b ) result (frobenius_inner_product)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: a(n,n)
-    real(kind=sp), intent(in) :: b(n,n)
-    real(kind=sp) :: frobenius_inner_product
-
-    frobenius_inner_product = trace__sp( n, matmul( transpose( a ), b ) )
-  end function frobenius_inner_product__sp
-
   function outer_product__dp( n, a, b ) result (outer_product)
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n)
@@ -418,18 +258,6 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
     end do
   end function outer_product__dp
 
-  function outer_product__sp( n, a, b ) result (outer_product)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: a(n)
-    real(kind=sp), intent(in) :: b(n)
-    real(kind=sp) :: outer_product(n,n)
-    integer :: j
-
-    do concurrent (j = 1:n)
-      outer_product(:,j) = a(:) * b(j)
-    end do
-  end function outer_product__sp
-
   function trace__dp( n, a ) result (trace)
     integer,       intent(in) :: n
     real(kind=dp), intent(in) :: a(n,n)
@@ -441,17 +269,5 @@ pure function new_diagonal_matrix_from_scalar__dp( n, d ) result (matrix)
       trace = trace + a(i,i)
     end do
   end function trace__dp
-
-  function trace__sp( n, a ) result (trace)
-    integer,       intent(in) :: n
-    real(kind=sp), intent(in) :: a(n,n)
-    real(kind=sp) :: trace
-    integer :: i
-
-    trace = 0.0_sp
-    do concurrent (i = 1:n)
-      trace = trace + a(i,i)
-    end do
-  end function trace__sp
 
 end module math_mod
