@@ -16,6 +16,7 @@ module solver_mod
   public cg_tl
     
   interface cg
+    module procedure cg__dp
     module procedure cg_symmetric_matrix__dp
   end interface
 
