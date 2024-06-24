@@ -1,10 +1,23 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
 cff-version: 1.2.0
-message: "If you use this software, please cite it using these metadata."
+title: >-
+  M_ad - Matrix derivative tests for forward and reverse
+  mode AD
+message: >-
+  If you use this software, please cite it using these
+  metadata.
+type: software
 authors:
   - family-names: Quast
     given-names: Ralf
-    orcid: "https://orcid.org/0000-0002-6857-6503"
-title: M_ad - Matrix derivative tests for forward and reverse mode AD
-repository-code: "https://github.com/octoflar/m_ad"
-url: "https://octoflar.github.io/m_ad"
+    orcid: 'https://orcid.org/0000-0002-6857-6503'
+repository-code: 'https://github.com/octoflar/m_ad'
+url: 'https://octoflar.github.io/m_ad'
+abstract: >-
+  A collection of matrix derivative tests for forward and
+  reverse mode algorithmic differentiation.
+keywords:
+  - algorithmic differentiation
 license: MIT
