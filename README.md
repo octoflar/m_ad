@@ -3,6 +3,7 @@
 This code is a collection of matrix derivative tests for forward and reverse mode
 algorithmic differentiation.
 
+[![CodeQL Advanced](https://github.com/octoflar/m_ad/actions/workflows/codeql.yml/badge.svg)](https://github.com/octoflar/m_ad/actions/workflows/codeql.yml)
 [![CMake](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml/badge.svg)](https://github.com/octoflar/m_ad/actions/workflows/cmake.yml)
 [![codecov](https://codecov.io/gh/octoflar/m_ad/graph/badge.svg?token=ESRBJSJ9HJ)](https://codecov.io/gh/octoflar/m_ad)
 
