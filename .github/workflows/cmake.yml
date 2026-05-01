@@ -23,7 +23,7 @@ jobs:
       BUILD_TYPE: ${{ matrix.kind }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Reinstall GCC
         run: |
@@ -59,7 +59,7 @@ jobs:
       BUILD_TYPE: ${{ matrix.kind }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
  
       - name: Install dependencies
         run: |
@@ -82,6 +82,6 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: ${{env.BUILD_TYPE == 'Debug'}}
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
